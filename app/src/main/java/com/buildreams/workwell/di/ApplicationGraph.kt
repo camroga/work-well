@@ -5,5 +5,5 @@ import dagger.Component
 
 @Component
 interface ApplicationComponent {
-//    fun inject(homeActivity: HomeActivity)
+    fun inject(homeActivity: HomeActivity)
 }

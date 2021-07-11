@@ -3,7 +3,6 @@ package com.buildreams.workwell
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -11,25 +10,27 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
+import com.buildreams.workwell.di.ViewModelFactory
 import com.buildreams.workwell.ui.theme.WorkWellTheme
 import com.buildreams.workwell.viewmodel.HomeViewModel
 import javax.inject.Inject
 
 class HomeActivity : ComponentActivity() {
 
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelProvider.Factory
-//    private val homeViewModel by viewModels<HomeViewModel> { viewModelFactory }
-
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory<HomeViewModel>
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        (applicationContext as WorkWellApplication).appComponent.inject(this)
+        (applicationContext as WorkWellApplication).appComponent.inject(this)
+        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+
         super.onCreate(savedInstanceState)
         setContent {
             WorkWellTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.primary) {
-                    com.buildreams.workwell.Greeting("Android")
+                    Greeting("Android")
                 }
             }
         }
