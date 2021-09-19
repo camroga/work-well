@@ -9,12 +9,11 @@ import android.hardware.SensorManager.SENSOR_DELAY_NORMAL
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import com.buildreams.workwell.di.ViewModelFactory
@@ -77,15 +76,13 @@ class LightIntensityActivity : ComponentActivity(), SensorEventListener {
 
 @Composable
 fun LightIntensityView(lightIntensity: Float) {
-    Column {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Text(text = "$lightIntensity")
     }
 }
 
-@Preview(showBackground = true)
+@Preview()
 @Composable
 fun LightIntensityPreview() {
-    WorkWellTheme {
         LightIntensityView(1.2f)
-    }
 }

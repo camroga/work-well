@@ -33,19 +33,31 @@ class HomeActivity : ComponentActivity() {
         setContent {
             WorkWellTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.primary) {
-                    Greeting("Android")
-                    Spacer(Modifier.height(24.dp))
-                    Button(onClick = {
-                        startActivity(Intent(this, LightIntensityActivity::class.java))
-                    }) {
-                        Text(text = "Show Light Intensity")
-                    }
-                }
+                mainView()
             }
         }
     }
 
+    @Composable
+    fun mainView() {
+        Surface(color = MaterialTheme.colors.primary) {
+            Greeting("Android")
+            Spacer(Modifier.height(24.dp))
+            Button(onClick = {
+                startActivity(Intent(this, LightIntensityActivity::class.java))
+            }) {
+                Text(text = "Show Light Intensity")
+            }
+        }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun Preview() {
+        WorkWellTheme {
+            mainView()
+        }
+    }
 }
 
 @Composable
@@ -55,10 +67,3 @@ fun Greeting(name: String) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    WorkWellTheme {
-        Greeting("Android")
-    }
-}
